@@ -1,0 +1,15 @@
+const fs = require('fs');
+const c = fs.readFileSync('D:/Company/nanosoft_signature_system/src/image/imageUploadService.ts', 'utf8');
+console.log('=== Phase 5 verification ===');
+console.log('writeEncryptedFile removed:', !c.includes('writeEncryptedFile'));
+console.log('storagePath removed:', !c.includes('storagePath'));
+console.log('old_storage_path removed:', !c.includes('old_storage_path'));
+console.log('fs imports removed:', !c.includes('import fs'));
+console.log('fs.promises.unlink removed:', !c.includes('fs.promises.unlink'));
+console.log('UPLOAD_DIR removed:', !c.includes('UPLOAD_DIR'));
+console.log('path imports removed:', !c.includes('import path'));
+console.log('Contains image_data:', c.includes('image_data'));
+console.log('Contains old_image_data:', c.includes('old_image_data'));
+console.log('Contains encryptedBuffer:', c.includes('encryptedBuffer'));
+console.log('Contains file_hash:', c.includes('file_hash'));
+console.log('File length:', c.length);

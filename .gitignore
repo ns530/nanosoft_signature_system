@@ -1,0 +1,27 @@
+# Secrets — NEVER commit
+.env
+.env.local
+.env.*.local
+
+# TLS Private Keys and Certificates (self-signed, sensitive)
+config/*-key.pem
+config/ca-key.pem
+config/*-cert.pem
+
+# Node
+node_modules/
+dist/
+*.log
+
+# Flutter
+apps/**/build/
+apps/**/.dart_tool/
+apps/**/android/local.properties
+apps/**/ios/Flutter/Flutter.podspec
+
+# OS/Editor
+.vscode/
+.DS_Store
+
+# Test artifacts
+test/*.apk

@@ -1,0 +1,38 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: holcemlk_mysql
+    env_file:
+      - ./config/mysql.env
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./config/mysql-server-cert.pem:/etc/mysql/certs/server-cert.pem:ro
+      - ./config/mysql-server-key.pem:/etc/mysql/certs/server-key.pem:ro
+      - ./config/ca-cert.pem:/etc/mysql/certs/ca-cert.pem:ro
+      - mysql_data:/var/lib/mysql
+    command: >
+      --ssl-ca=/etc/mysql/certs/ca-cert.pem
+      --ssl-cert=/etc/mysql/certs/server-cert.pem
+      --ssl-key=/etc/mysql/certs/server-key.pem
+      --require-secure-transport=ON
+
+  redis:
+    image: redis:7-alpine
+    container_name: holcemlk_redis
+    ports:
+      - "6379:6379"
+      - "6380:6380"
+    volumes:
+      - ./config/redis-server-cert.pem:/etc/redis/certs/server-cert.pem:ro
+      - ./config/redis-server-key.pem:/etc/redis/certs/server-key.pem:ro
+      - ./config/ca-cert.pem:/etc/redis/certs/ca-cert.pem:ro
+    command: >
+      redis-server --tls-port 6380 --port 0
+      --tls-cert-file /etc/redis/certs/server-cert.pem
+      --tls-key-file /etc/redis/certs/server-key.pem
+      --tls-ca-cert-file /etc/redis/certs/ca-cert.pem
+      --tls-auth-clients no
+
+volumes:
+  mysql_data:
