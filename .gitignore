@@ -2,6 +2,7 @@
 .env
 .env.local
 .env.*.local
+config/mysql.env
 
 # TLS Private Keys and Certificates (self-signed, sensitive)
 config/*-key.pem
@@ -19,9 +20,16 @@ apps/**/.dart_tool/
 apps/**/android/local.properties
 apps/**/ios/Flutter/Flutter.podspec
 
-# OS/Editor
-.vscode/
-.DS_Store
+# BMad Method (workflow framework, not project code)
+.agent/
+.agents/
+.cline/
+_bmad/
+_bmad-output/
 
 # Test artifacts
 test/*.apk
+
+# OS/Editor
+.vscode/
+.DS_Store
